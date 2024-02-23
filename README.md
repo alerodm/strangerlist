@@ -10,7 +10,7 @@ As requested by the challenge description:
 
 * Only desktop browsers are supported. I have no experience with mobile platforms and I wasn't sure how much time it would take me to get that running, so I preferred to focus on the rest of requirements.
 * Find a better clean-up method for created items. This would depend on finding a way to obtain the item id.
-* Polish code.
+* Polish code. I'm rusty with JS and I had never used Webdriver.io before so code is what it is.
 
 ## How to setup the project & execute tests for desktop
 
