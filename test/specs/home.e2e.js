@@ -28,7 +28,7 @@ const createItem = async () => {
     const imgFullPath = path.join(__dirname, imgFileName)
     const timestamp = Date.now();
     const text = `Item created by an e2e test - ${timestamp}`
-    await HomePage.createItem(imgFullPath, text)
+    await HomePage.form.createItem(imgFullPath, text)
     return { text, imgFileName }
 }
 
@@ -41,7 +41,7 @@ describe('Angular Stranger List - Home', () => {
 
         await HomePage.navigateHome()
         const newItem = await createItem()
-        expect(await HomePage.ItemsList.isItemPresent(newItem.imgFileName, newItem.text)).toBeTruthy()
+        expect(await HomePage.itemsList.isItemPresent(newItem.imgFileName, newItem.text)).toBeTruthy()
 
         // I could not find a way to obtain the id of the created item from the DOM, so to do
         // a proper cleanup I restorted to obtaining the id by diffing the get items request response
@@ -60,8 +60,8 @@ describe('Angular Stranger List - Home', () => {
         const newText = `${testItem.text} - modified`
         const imgFileName = '320x320sq.png'
         const imgFullPath = path.join(__dirname, imgFileName)
-        await HomePage.editItem(testItem.text, imgFullPath, newText)
-        expect(await HomePage.ItemsList.isItemPresent(imgFileName, newText)).toBeTruthy()
+        await HomePage.form.editItem(testItem.text, imgFullPath, newText)
+        expect(await HomePage.itemsList.isItemPresent(imgFileName, newText)).toBeTruthy()
 
         // cleanup
         const itemsFromApiAfterCreation = await getItemsFromAPI()
@@ -74,14 +74,14 @@ describe('Angular Stranger List - Home', () => {
     it('003 - deleting an existing item is succesful', async () => {
         await HomePage.navigateHome()
         const testItem = await createItem()
-        await HomePage.deleteItem(testItem.text)
-        expect(await HomePage.ItemsList.isItemPresent(testItem.imgFileName, testItem.text)).toBeFalsy()
+        await HomePage.form.deleteItem(testItem.text)
+        expect(await HomePage.itemsList.isItemPresent(testItem.imgFileName, testItem.text)).toBeFalsy()
     })
 
     it('004 - max length should be enforced in the text field of the Item Details form', async () => {
         await HomePage.navigateHome()
 
-        HomePage.formImageField.setValue('foo.jpg')  // file input has to be completed to enable the button 
+        HomePage.form.formImageField.setValue('foo.jpg')  // file input has to be completed to enable the button 
 
         const chars301 = ['Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
             'Aenean commodo ligula eget dolor. Aenean massa.',
@@ -89,12 +89,12 @@ describe('Angular Stranger List - Home', () => {
             'nascetur ridiculus mus. Donec quam felis, ultricies nec,',
             'pellentesque eu, pretium quis, sem.',
             'Nulla consequat massa quis enim. Donec p',].join('\n')
-        await HomePage.formTextField.setValue(chars301)
-        await expect(HomePage.createItemButton).toBeDisabled()
+        await HomePage.form.formTextField.setValue(chars301)
+        await expect(HomePage.form.createItemButton).toBeDisabled()
 
         // now we send 300 chars and verify the form is succesfully validated
-        await HomePage.formTextField.setValue(chars301.slice(0, -1))
-        await expect(HomePage.createItemButton).toBeEnabled()
+        await HomePage.form.formTextField.setValue(chars301.slice(0, -1))
+        await expect(HomePage.form.createItemButton).toBeEnabled()
     })
 
     it('005 - verify specific string is contained as part of an item\'s text', async () => {

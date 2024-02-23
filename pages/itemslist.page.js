@@ -1,6 +1,6 @@
 import Page from './page.js'
 
-class ItemsList extends Page {
+class ItemsListPage extends Page {
     async isItemPresent(imgSrc, text) {
         await $('figure').waitForDisplayed() // couldn't find a better condition to make sure the list is fully loaded
         const itemList = await $$('div.media-left')
@@ -15,4 +15,4 @@ class ItemsList extends Page {
     }
 }
 
-export default new ItemsList();
+export default new ItemsListPage();

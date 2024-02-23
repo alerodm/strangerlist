@@ -1,19 +1,22 @@
 # STRANGERLIST Challenge
 
 Node.js and Webdriver.io were chosen to solve this challenge to align with the tooling used by the company.
-Since I had never used wdio before I maintained the structure suggested by the tool botstraping option.
 
 As requested by the challenge description:
 * Test-cases are detailed [here](./docs/test_cases.md).
 * Issues found in the project are detailed [here](./docs/issues.md).
 
-The only requirement missing is the mobile support. I have no experience with that platform and I had no idea how much I would take me to get things running, so I preferred to focus on the rest of the challenge.
+## TO-DO LIST
+
+* Only desktop browsers are supported. I have no experience with mobile platforms and I wasn't sure how much time it would take me to get that running, so I preferred to focus on the rest of requirements.
+* Find a better clean-up method for created items. This would depend on finding a way to obtain the item id.
+* Polish code.
 
 ## How to setup the project & execute tests for desktop
 
 ### Local
 
-This test project was tested under node v20.11.1 and npm 10.2.4. Other combinations might have unexpected issues.
+This test project was tested under node v20.11.1, npm 10.2.4 and latest Chrome. Other combinations might have unexpected issues.
 
 To install dependencies please run:
 `npm install`
