@@ -1,15 +1,18 @@
 import Page from './page.js'
 
-export default class ItemsList extends Page {
-    async getItems() {
-        const items = await $$('ul[ng-model="items"] > li')
-        const itemDetails = []
-        for (const item of items) {
-            const text = await (await item.$('p')).getText()
-            const imgSrc = await item.$('img').getAttribute('src')
-            itemDetails.push({ text, imgSrc })
+class ItemsList extends Page {
+    async isItemPresent(imgSrc, text) {
+        await $('figure').waitForDisplayed() // couldn't find a better condition to make sure the list is fully loaded
+        const itemList = await $$('div.media-left')
+        for (const item of itemList) {
+            const itemText = await item.$('p').getText()
+            const itemImgSrc = await item.$('figure').$('img').getAttribute('src')
+            if (itemText.includes(text) && itemImgSrc.includes(imgSrc)) {
+                return true
+            }
         }
-    
-        return itemDetails;
-      }
+        return false
+    }
 }
+
+export default new ItemsList();

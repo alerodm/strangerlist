@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  angular-strangerlist:
+    image: angular-strangerlist
+    container_name: angular-strangerlist
+    ports:
+      - "3000:3000" # Expose port 3000 on the host to port 3000 in the container
+
+  tests:
+    image: strangerlist
+    container_name: strangerlist
+    depends_on:
+      - angular-strangerlist
+    environment:
+      - ANGULAR_HOST=angular-strangerlist:3000

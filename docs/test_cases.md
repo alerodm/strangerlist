@@ -54,7 +54,7 @@
 
 ----
 
-*005 - Verify "Creators: Matt Duffer, Ross Duffer" string exists as part of one of the items text*
+*005 - Verify "Creators: Matt Duffer, Ross Duffer" string exists as part of one of the items' text*
 
 * Browse to the home page
 * Do a control+F (or command+f if in Mac) and search for "Creators: Matt Duffer, Ross Duffer" text

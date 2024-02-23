@@ -7,7 +7,7 @@ import { $ } from '@wdio/globals'
 class HomePage extends Page {
     constructor() {
         super()
-        this.itemsList = new ItemsList();
+        this.ItemsList = ItemsList;
     }
     
     get listTitle() {
@@ -70,6 +70,10 @@ class HomePage extends Page {
         const targetDeleteButton = await $(`//p[contains(text(), "${textToMatch}")]/ancestor::li//button[contains(text(), 'Delete')]`)
         await targetDeleteButton.click()
         await this.deleteConfirmationButton.click()
+    }
+
+    async doesItemExist(text) {
+        await $(`//p[contains(text(), "${text}")]/ancestor::li//button[contains(text(), 'Edit')]`)
     }
 }
 

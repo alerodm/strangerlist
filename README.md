@@ -21,6 +21,8 @@ To install dependencies please run:
 To execute tests run:
 `STRANGER_BASE_URL=http://localhost:3000/ npm run test`
 
+Tests are configured to run headless by default. This can be disabled by modifying the capabilities entry in the wdio.conf.js file.
+
 ### Docker
 
 If you don't want to deal with setup and dependencies, running through docker is the recommended option.
@@ -32,6 +34,10 @@ After the image is built, you can run this command whenenver you want to create 
 `docker run --rm -e STRANGER_BASE_URL=http://the-url.com/stranger/ strangerlist`
 
 Don't forget to modify the base url in the command!
-And in case you want to target your local running project, you can do so by using this internal url `http://host.docker.internal:3000`.
+In case you want to target your local running angular-strangerlist app, you can do so by using this internal url `http://host.docker.internal:3000`.
 
 Lastly, remember to re-build the image every time the source code of the project changes.
+
+### Docker Compose
+
+I provided a sample docker-compose.yml as requested, but I cannot test it as the repo of the angular-strangerlist app doesn't contain a dockerfile.
